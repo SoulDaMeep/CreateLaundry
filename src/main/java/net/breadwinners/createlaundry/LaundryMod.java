@@ -26,6 +26,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -42,7 +43,7 @@ public class LaundryMod {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // call are register functions in the modular classes
+
         LaundryModBlocks.register(modEventBus);
         LaundryModItems.register(modEventBus);
         LaundryModCreativeTabs.register(modEventBus);

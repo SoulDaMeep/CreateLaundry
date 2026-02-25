@@ -40,6 +40,8 @@ public class LaundryModBlocks {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerSimpleBlock("example_block",
         BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().mapColor(MapColor.STONE)
     );
+
+    public static final DeferredBlock<Block> BLOCK = registerBlock("cheese", () -> new TestBlock(BlockBehaviour.Properties.of().destroyTime(1000.0f)));
     // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
 //    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
 }
