@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -32,6 +31,7 @@ public class LaundryModBlocks {
     }
 
     public static void register(IEventBus bus) {
+
         BLOCKS.register(bus);
     }
 
@@ -40,8 +40,4 @@ public class LaundryModBlocks {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerSimpleBlock("example_block",
         BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().mapColor(MapColor.STONE)
     );
-
-    public static final DeferredBlock<Block> BLOCK = registerBlock("cheese", () -> new TestBlock(BlockBehaviour.Properties.of().destroyTime(1000.0f)));
-    // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-//    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
 }
