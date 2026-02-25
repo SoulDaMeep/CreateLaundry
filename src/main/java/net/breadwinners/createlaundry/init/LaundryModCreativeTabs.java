@@ -1,4 +1,4 @@
-package net.breadwinners.createlaundry;
+package net.breadwinners.createlaundry.init;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;

@@ -1,9 +1,7 @@
 package net.breadwinners.createlaundry.datagen;
 
 import net.breadwinners.createlaundry.LaundryMod;
-import net.breadwinners.createlaundry.LaundryModBlocks;
-import net.breadwinners.createlaundry.LaundryModItems;
-import net.minecraft.data.DataGenerator;
+import net.breadwinners.createlaundry.init.LaundryModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 

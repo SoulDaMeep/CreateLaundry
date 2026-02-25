@@ -1,4 +1,4 @@
-package net.breadwinners.createlaundry;
+package net.breadwinners.createlaundry.init;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
