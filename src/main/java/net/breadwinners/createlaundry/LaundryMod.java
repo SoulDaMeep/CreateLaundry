@@ -1,6 +1,7 @@
 package net.breadwinners.createlaundry;
 
 import com.mojang.logging.LogUtils;
+import net.breadwinners.createlaundry.init.LaundryModBlockEntities;
 import net.breadwinners.createlaundry.init.LaundryModBlocks;
 import net.breadwinners.createlaundry.init.LaundryModCreativeTabs;
 import net.breadwinners.createlaundry.init.LaundryModItems;
@@ -32,6 +33,7 @@ public class LaundryMod {
         modEventBus.addListener(this::commonSetup);
 
 
+        LaundryModBlockEntities.register(modEventBus);
         LaundryModBlocks.register(modEventBus);
         LaundryModItems.register(modEventBus);
         LaundryModCreativeTabs.register(modEventBus);

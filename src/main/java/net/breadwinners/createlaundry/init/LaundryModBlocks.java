@@ -12,6 +12,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 import static net.breadwinners.createlaundry.LaundryMod.MODID;
+//import net.breadwinners.createlaundry.blocks.Washer.WasherBlockEntity;
 
 public class LaundryModBlocks {
 
@@ -31,7 +32,6 @@ public class LaundryModBlocks {
     }
 
     public static void register(IEventBus bus) {
-
         BLOCKS.register(bus);
     }
 
@@ -40,4 +40,8 @@ public class LaundryModBlocks {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerSimpleBlock("example_block",
         BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().mapColor(MapColor.STONE)
     );
+
+//    public static final DeferredBlock<WasherBlockEntity> WASHER_BLOCK = registerBlock("washer",
+//            () -> new WasherBlockEntity(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops())
+//        );
 }
