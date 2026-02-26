@@ -18,6 +18,39 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
+/*
+
+
+
+    Player Dirtyness working
+
+      Applied on armor!!!!
+
+      Effects ->
+    - Slow
+    - Weakness
+
+      How it builds ->
+    - Mobs hitting player
+    - Players hitting players
+    - fall damage
+
+      Types ->
+    - Cracks
+    - Dirt
+
+    Player Dirtyness effects bed dirtyness everytime you sleep
+
+
+
+
+    Boring stuff
+    - textures
+
+ */
+
+
+
 @Mod(LaundryMod.MODID)
 public class LaundryMod {
     public static final String MODID = "createlaundry";
