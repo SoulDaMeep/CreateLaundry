@@ -12,7 +12,6 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = LaundryMod.MODID, dist = Dist.CLIENT)
-// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = LaundryMod.MODID, value = Dist.CLIENT)
 public class LaundryModClient {
     public LaundryModClient(ModContainer container) {

@@ -14,8 +14,6 @@ public class LaundryModCreativeTabs {
 
     // generic tabs register
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-
-    // register tab(s)
     public static void register(IEventBus bus) {
         CREATIVE_MODE_TABS.register(bus);
     }
