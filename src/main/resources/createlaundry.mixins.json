@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "net.breadwinners.createlaundry.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "TestMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+
+  ]
+}

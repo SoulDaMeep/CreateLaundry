@@ -39,10 +39,10 @@ public class PlayerSleepHandler {
             if(blockEntity instanceof BedBlockEntity bedBlockEntity)
             {
                 final float newValue = level.random.nextFloat() * 0.1f;
-                final float current = getData(bedBlockEntity, DIRTYVALUE);
+                final float current = getData(bedBlockEntity, ATT_DIRT_VALUE);
                 final float dirtyness = current + newValue;
 
-                setData(bedBlockEntity, DIRTYVALUE, dirtyness);
+                setData(bedBlockEntity, ATT_DIRT_VALUE, dirtyness);
             }
         }
     }
