@@ -30,12 +30,12 @@ public abstract class TestMixin {
 
         List<ClientTooltipComponent> components = new ArrayList<>(original);
 
-        components.add(0,
-                ClientTooltipComponent.create(
-                        Component.literal("This is a test for mixins.")
-                                .getVisualOrderText()
-                )
-        );
+//        components.add(0,
+//                ClientTooltipComponent.create(
+//                        Component.literal("This is a test for mixins.")
+//                                .getVisualOrderText()
+//                )
+//        );
 
         return components;
     }

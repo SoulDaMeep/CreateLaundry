@@ -5,10 +5,17 @@ import net.breadwinners.createlaundry.init.LaundryModBlockEntities;
 import net.breadwinners.createlaundry.init.LaundryModBlocks;
 import net.breadwinners.createlaundry.init.LaundryModCreativeTabs;
 import net.breadwinners.createlaundry.init.LaundryModItems;
+import net.breadwinners.createlaundry.utils.LaundryRandom;
 import net.breadwinners.createlaundry.utils.LaundryStorage;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ArmorItem;
@@ -25,6 +32,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.living.ArmorHurtEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.objectweb.asm.tree.analysis.Value;
@@ -73,7 +81,7 @@ public class LaundryMod {
     public LaundryMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
+        LaundryStorage.registar(modEventBus);
         LaundryModBlockEntities.register(modEventBus);
         LaundryModBlocks.register(modEventBus);
         LaundryModItems.register(modEventBus);
@@ -90,31 +98,18 @@ public class LaundryMod {
     }
 
     // TODO: Abstract...
+
+
     @SubscribeEvent
-    void onEntityHurt(LivingDamageEvent.Post event)
+    public void onItemTooltip(ItemTooltipEvent event)
     {
-        if(!(event.getEntity() instanceof Player player)) return;
-        if(event.getSource().getEntity() != null)
-        {
-            // the 4 primary slots
-            Iterable<ItemStack> armorslots = player.getArmorSlots();
-            for(ItemStack item : armorslots)
-            {
+        ItemStack stack = event.getItemStack();
+        List<Component> lines = event.getToolTip();
 
-                // redundant unless playing modded game
-                if(!(item.getItem() instanceof ArmorItem armor)) continue;
-
-                // TODO: Make it random based on damage took and defense of the armor.
-                // Also maybe try looking at ArmorHurtEvent? sounds useful...
-                final float dirtValue = LaundryStorage.getData(item, LaundryStorage.CMP_DIRT_VALUE, 0.0f) + Minecraft.getInstance().level.random.nextFloat() * 0.1f;
-                LaundryStorage.setData(item, LaundryStorage.CMP_DIRT_VALUE, dirtValue);
-            }
-        }
-        // Spider, Zombie, fall, drown, etc
-        LOGGER.info(event.getSource().toString());
+        // example: add custom value
+        lines.add(1, Component.literal("Dirt: " + LaundryStorage.getData(stack, LaundryStorage.CMP_DIRT_VALUE, 0.0f))
+                .withStyle(ChatFormatting.GRAY));
     }
-
-
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTab() == LaundryModCreativeTabs.MAIN_TAB.get()) {

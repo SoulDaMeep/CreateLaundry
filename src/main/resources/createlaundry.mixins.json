@@ -3,6 +3,8 @@
   "package": "net.breadwinners.createlaundry.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "LivingEntityMixin",
+    "ModelPartAccessor",
     "TestMixin"
   ],
   "injectors": {
@@ -12,6 +14,5 @@
     "requireAnnotations": true
   },
   "client": [
-
   ]
 }
