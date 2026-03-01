@@ -1,37 +1,51 @@
 package net.breadwinners.createlaundry.blocks.Washer;
 
-import net.breadwinners.createlaundry.init.LaundryModBlockEntities;
+import net.breadwinners.createlaundry.utils.LaundryRotatableBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.redstone.Redstone;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.EntityBlock;
+
 import org.jetbrains.annotations.Nullable;
 
-//public class WasherBlock extends BaseEntityBlock {
-//
-//    public WasherBlock(Properties properties) {
-//        super(properties);
-//    }
-//
-//    @Nullable
+public class WasherBlock extends LaundryRotatableBlock {
+
+    public WasherBlock() {
+        super(Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(3.5F)
+                .requiresCorrectToolForDrops());
+    }
+
+//    // Called when placed or neighbor updates
 //    @Override
-//    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-//        return new WasherBlockEntity(pos, state);
-//    }
+//    public void neighborChanged(BlockState state, Level level, BlockPos pos,
+//                                Block block, BlockPos fromPos, boolean moving) {
 //
-//    // Only needed if it ticks
-//    @Nullable
-//    @Override
-//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
-//            Level level,
-//            BlockState state,
-//            BlockEntityType<T> type
-//    ) {
-//        return type == LaundryModBlockEntities.WASHER_BLOCK_ENTITY.get()
-//                ? (lvl, pos, st, be) -> ((WasherBlockEntity) be).tick()
-//                : null;
+//        if (!level.isClientSide) {
+//            boolean powered = level.getBestNeighborSignal(pos) > 0;
+//
+//            if (state.getValue(ACTIVE) != powered) {
+//                level.setBlock(pos, state.setValue(ACTIVE, powered), 3);
+//            }
+//        }
 //    }
-//}
+
+    // BlockEntity creation
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new WasherBlockEntity(pos, state);
+    }
+}

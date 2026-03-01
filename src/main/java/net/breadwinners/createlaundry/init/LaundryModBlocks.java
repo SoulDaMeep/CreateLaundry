@@ -1,5 +1,6 @@
 package net.breadwinners.createlaundry.init;
 
+import net.breadwinners.createlaundry.blocks.Washer.WasherBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -7,6 +8,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -40,6 +42,8 @@ public class LaundryModBlocks {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerSimpleBlock("example_block",
         BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().mapColor(MapColor.STONE)
     );
+
+    public static final DeferredHolder<Block, Block> WASHER = registerBlock("washer", WasherBlock::new);
 
 //    public static final DeferredBlock<WasherBlockEntity> WASHER_BLOCK = registerBlock("washer",
 //            () -> new WasherBlockEntity(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops())
