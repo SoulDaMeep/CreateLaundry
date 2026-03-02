@@ -13,6 +13,10 @@ public class LaundryRandom {
     {
         return damage * (randomSource.nextFloat() / (1.0f + toughness));
     }
+    public static float GetRandomArmorClean(float amount, float toughness)
+    {
+        return amount * (randomSource.nextFloat() / (1.0f + toughness));
+    }
 
 
 

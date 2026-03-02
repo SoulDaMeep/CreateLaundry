@@ -20,7 +20,7 @@ public class EntityHurtHandler {
     {
 
         if(!(event.getEntity() instanceof Player player)) return;
-
+        if(isFire(event.getSource()) || isLava(event.getSource())) return;
         // newDamage is the damage subtracted from the health (final player hurt damage)
         // newDamage includes blocked damage, shielded damage, and absorbtion
         final float finalDamage = event.getNewDamage();
@@ -45,5 +45,13 @@ public class EntityHurtHandler {
     private static boolean isFallDamage(DamageSource damageSource)
     {
         return damageSource.is(DamageTypes.FALL);
+    }
+    private static boolean isLava(DamageSource damageSource)
+    {
+        return damageSource.is(DamageTypes.LAVA);
+    }
+    private static boolean isFire(DamageSource damageSource)
+    {
+        return damageSource.is(DamageTypes.ON_FIRE) || damageSource.is(DamageTypes.IN_FIRE);
     }
 }

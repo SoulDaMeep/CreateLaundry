@@ -107,5 +107,15 @@ public class LaundryStorage {
 
         LaundryStorage.setDirt(item, currentArmorDirt + addedDirt);
     }
+    public static void handleArmorCleaned(ItemStack item, float amount)
+    {
+        if(item.isEmpty()) return;
+        if(!(item.getItem() instanceof ArmorItem armorItem)) return;
+
+        final float toughness = armorItem.getToughness();
+        final float currentArmorDirt = LaundryStorage.getDirt(item, 0.0f);
+        final float removedDirt = LaundryRandom.GetRandomArmorClean(amount, toughness);
+        LaundryStorage.setDirt(item, currentArmorDirt - removedDirt);
+    }
 
 }
