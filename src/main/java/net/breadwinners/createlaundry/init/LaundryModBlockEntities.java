@@ -1,5 +1,6 @@
 package net.breadwinners.createlaundry.init;
 
+import net.breadwinners.createlaundry.blocks.Washer.WasherBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -32,6 +33,13 @@ public class LaundryModBlockEntities {
                 () -> BlockEntityType.Builder.of(factory, block.get()).build(null)
         );
     }
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WasherBlockEntity>> WASHER =
+            BLOCK_ENTITIES.register("washer",
+                    () -> BlockEntityType.Builder.of(
+                            WasherBlockEntity::new,
+                            LaundryModBlocks.WASHER.get()
+                    ).build(null));
 
 //    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WasherBlockEntity>> WASHER_BLOCK_ENTITY = registerBlockEntity(
 //  "washer",
