@@ -1,7 +1,10 @@
 package net.breadwinners.createlaundry;
 
 import com.mojang.logging.LogUtils;
-import net.breadwinners.createlaundry.init.*;
+import net.breadwinners.createlaundry.init.LaundryModBlockEntities;
+import net.breadwinners.createlaundry.init.LaundryModBlocks;
+import net.breadwinners.createlaundry.init.LaundryModCreativeTabs;
+import net.breadwinners.createlaundry.init.LaundryModItems;
 import net.breadwinners.createlaundry.utils.LaundryRandom;
 import net.breadwinners.createlaundry.utils.LaundryStorage;
 import net.minecraft.ChatFormatting;
@@ -83,7 +86,6 @@ public class LaundryMod {
         LaundryModBlocks.register(modEventBus);
         LaundryModItems.register(modEventBus);
         LaundryModCreativeTabs.register(modEventBus);
-        LaundryModCapabilities.register(modEventBus); // register capability events
 
         // register ourselves
         NeoForge.EVENT_BUS.register(this);
