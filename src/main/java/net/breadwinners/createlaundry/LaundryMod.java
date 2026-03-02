@@ -1,14 +1,26 @@
 package net.breadwinners.createlaundry;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.logging.LogUtils;
 import net.breadwinners.createlaundry.init.LaundryModBlockEntities;
 import net.breadwinners.createlaundry.init.LaundryModBlocks;
 import net.breadwinners.createlaundry.init.LaundryModCreativeTabs;
 import net.breadwinners.createlaundry.init.LaundryModItems;
+import net.breadwinners.createlaundry.mixins.ModelPartAccessor;
 import net.breadwinners.createlaundry.utils.LaundryRandom;
 import net.breadwinners.createlaundry.utils.LaundryStorage;
+import net.breadwinners.createlaundry.utils.Rendering;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.debug.DebugRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
@@ -22,14 +34,19 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RenderHighlightEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.entity.living.ArmorHurtEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -38,6 +55,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.objectweb.asm.tree.analysis.Value;
 import org.slf4j.Logger;
 
+import javax.swing.*;
 import java.util.List;
 
 /*
@@ -97,9 +115,9 @@ public class LaundryMod {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
+
+
     // TODO: Abstract...
-
-
     @SubscribeEvent
     public void onItemTooltip(ItemTooltipEvent event)
     {
